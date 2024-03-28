@@ -4,11 +4,10 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="styles/baseStyle.css"/>
     <link rel="icon" type="image/png" href="images/diwa.png">
-    <title>Home</title>
-
+    <title>Edit</title>
 
 </head>
-<body onload="getAllPosts()">
+<body>
     <div class="container">
         <div id="header">
             <div class="logo" id="homePage">
@@ -21,18 +20,17 @@
         </div>
 
         <div id="main">
-            <div id="blogPosts"></div>
-
+            <p>Edit blogpost</p>
+            <button onclick="httpGet()">Test button</button>
+            <p id="testP"></p>
         </div>
 
         <div id="asideRight">
             <h2>Menu</h2>
             <dl>
+                <dt> <span class="menuLinks" id="home">Homepage</span></dt>
                 <dt>Category</dt>
                 <dd>- blog post title</dd>
-                <dt>Edit</dt>
-                <dd><span class="menuLinks" id="edit">- Edit post</span></dd>
-                <dd><span class="menuLinks" id="create">- Create new post</span></dd>
             </dl>
         </div>
 
@@ -40,6 +38,6 @@
             Contact us
         </div>
     </div>
-    <script src="scripts/homePage.js"></script>
+    <script src="scripts/editPage.js"></script>
 </body>
 </html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="styles/baseStyle.css"/>
+    <link rel="stylesheet" type="text/css" href="styles/createPostPage.css"/>
+    <link rel="icon" type="image/png" href="images/diwa.png">
+    <title>Edit</title>
+</head>
+<body>
+    <div class="container">
+        <div id="header">
+            <div class="logo" id="homePage">
+                <img src= "images/diwa.png" alt="logo" height="160" width="400">
+            </div>
+        </div>
+
+        <div id="asideLeft">
+            <p>Left</p>
+        </div>
+
+        <div id="main">
+            <p>Create new blogpost
+
+            </p>
+
+            <div class="formDiv">
+                <form class="createPost">
+                    <label for="title">Title:</label><br>
+                    <input id="title" name="title" type="text" required/><br><br>
+                    <label for="userId">User ID::</label><br>
+                    <input id="userId" name="author" type="number" required/><br><br>
+                    <label>Text content:</label><br>
+                    <textarea id="textContent" name="textContent" type="text" required></textarea><br><br>
+                    <label for="date">Date:</label><br>
+                    <input id="date" name="date" type="text" required/><br><br>
+                    <button id="createButton" onclick="createBlogPost()">Submit</button>
+                </form><br>
+                <p id="messageResponse"></p>
+            </div>
+        </div>
+
+        <div id="asideRight">
+            <h2>Menu</h2>
+            <dl>
+                <dt> <span class="menuLinks" id="home">Homepage</span></dt>
+                <dt>Category</dt>
+                <dd>- blog post title</dd>
+            </dl>
+        </div>
+
+        <div id="footer">
+            Contact us
+        </div>
+    </div>
+    <script src="scripts/createPage.js"></script>
+</body>
+</html>
