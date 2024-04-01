@@ -1,3 +1,16 @@
+const home = document.getElementById("home");
+const homePage = document.getElementById("homePage");
+
+
+home.addEventListener("click", function() {
+  window.location.href = "homePage.html"; // Ändra här till rätt filnamn om det behövs
+});
+
+homePage.addEventListener("click",
+    function() {
+        window.location = "homePage.html";
+    }
+);
 
 
 

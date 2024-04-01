@@ -14,6 +14,7 @@
     grid-column: 1/4;
     grid-row: 1;
     background-color:#FF4A4A;
+    text-align: center;
 }
 
 #asideLeft {
@@ -50,6 +51,7 @@
 .logo{
     cursor: pointer;
 }
+
 button{
     color: #FFE0C5;
     background-color: #14224E;
