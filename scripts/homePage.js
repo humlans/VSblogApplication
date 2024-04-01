@@ -1,7 +1,7 @@
 const edit = document.getElementById("edit");
 const homePage = document.getElementById("homePage");
 const create = document.getElementById("create");
-
+//TEST
 homePage.addEventListener("click",
     function() {
         window.location = "homePage.html";
