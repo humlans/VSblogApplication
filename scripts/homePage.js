@@ -1,24 +1,3 @@
-const edit = document.getElementById("edit");
-const homePage = document.getElementById("homePage");
-const create = document.getElementById("create");
-//TEST
-homePage.addEventListener("click",
-    function() {
-        window.location = "homePage.html";
-    }
-);
-edit.addEventListener("click",
-    function() {
-        window.location = "editpage.html";
-    }
-);
-create.addEventListener("click",
-    function() {
-        console.log("test");
-        window.location = "createpage.html";
-    }
-);
-
 function getAllPosts() {
     const xhr = new XMLHttpRequest();
     xhr.open("GET", "http://localhost:8080/blog-post/get-all-posts");

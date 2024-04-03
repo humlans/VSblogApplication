@@ -10,19 +10,20 @@
 <body>
     <div class="container">
         <div id="header">
-            <div class="logo" id="homePage">
-                <img src= "images/diwa.png" alt="logo" height="160" width="400">
-            </div>
+            <div class="logo" id="homePage"></div>
+            <div class="logo" id="homePage"></div>
+            <ul id="menuList">
+                <li class="menuElement"><a href="about.html">About</a></li>
+                <li class="menuElement"><a href="editPage.html">Edit post</a></li>
+                <li class="menuElement"><a href="createPage.html">Create post</a></li>
+                <li class="menuElement"><a href="homePage.html">Home</a></li>
+            </ul>
         </div>
 
-        <div id="asideLeft">
-            <p>Left</p>
-        </div>
+        <div id="asideLeft"></div>
 
         <div id="main">
-            <p>Create new blogpost
-
-            </p>
+            <h1>Create new blogpost</h1><br><br>
 
             <div class="formDiv">
                 <form class="createPost">
@@ -41,18 +42,13 @@
         </div>
 
         <div id="asideRight">
-            <h2>Menu</h2>
-            <dl>
-                <dt> <span class="menuLinks" id="home">Homepage</span></dt>
-                <dt>Category</dt>
-                <dd>- blog post title</dd>
-            </dl>
         </div>
 
         <div id="footer">
             Contact us
         </div>
     </div>
+    <script src="scripts/menuScript.js"></script>
     <script src="scripts/createPage.js"></script>
 </body>
 </html>
