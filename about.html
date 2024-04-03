@@ -2,18 +2,16 @@
 <html xmlns:th="https://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="styles/homePageAdmin.css"/>
     <link rel="stylesheet" type="text/css" href="styles/baseStyle.css"/>
     <link rel="icon" type="image/png" href="images/diwa.png">
     <title>Home</title>
 
 
 </head>
-<!--<body onload="getAllPosts()">-->
-    <body>
+<body onload="getAllPosts()">
     <div class="container">
         <div id="header">
-            <div class="logo" id="homePage">
+            <div class="logo" id="homePage" onclick="homePage.html">
                 <a href="homePage.html"> <img id="logoImage" src="images/diwa.png" alt="Diwa" height="100vw" width="100vw"> </a>
             </div>
             <div id="menuDiv">
@@ -30,24 +28,16 @@
         </div>
 
         <div id="main">
-            <div id="blogPosts"></div>
 
         </div>
 
         <div id="asideRight">
-            <div class="dropdown">
-                <select id="userButton" onchange="getLoggedInUsersPosts()">
-                    <option value="0">None</option >
-                    <option value="1">user1</option >
-                    <option value="2">user2</option >
-              </select >
-            </div>
-            <br>
         </div>
 
         <div id="footer">
+            Contact us
         </div>
     </div>
-    <script src="scripts/homePageAdmin.js"></script>
+    <script src="scripts/menuScript.js"></script>
 </body>
 </html>

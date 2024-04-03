@@ -7,7 +7,7 @@
 .container {
     display: grid;
     grid-template-columns: 10vw 80vw 10vw;
-    grid-template-rows: 10vw auto 10vw;
+    grid-template-rows: 5vw auto 10vw;
 }
 
 #header {
@@ -15,6 +15,19 @@
     grid-row: 1;
     background-color:#FF4A4A;
     text-align: center;
+    position: sticky;
+    top: 0;
+    display: grid;
+    grid-template-columns: 10vw 90vw;
+}
+
+.logo{
+    cursor: pointer;
+    grid-column: 1;
+}
+
+#menuDiv {
+    grid-column: 2;
 }
 
 #asideLeft {
@@ -28,7 +41,7 @@
     grid-column: 2;
     grid-row:2;
     text-align: center;
-    padding: 10%;
+    padding: 5%;
 }
 
 #asideRight {
@@ -42,15 +55,7 @@
     grid-row: 3;
     background-color: #BC3E3E;
 }
-.menuLinks{
-    cursor: pointer;
-}
-.menuLinks:hover {
-    color: #BC3E3E;
-}
-.logo{
-    cursor: pointer;
-}
+
 
 button{
     color: #FFE0C5;
@@ -60,33 +65,37 @@ button{
     border-radius: 12px;
 }
 
-.dropdown {
-    display: inline-block;
-    position: relative;
-}
-.dropdown-options {
-    display: none;
-    position: absolute;
-    overflow: auto;
-    background-color:#fff;
-    border-radius:5px;
-    box-shadow: 0px 10px 10px 0px rgba(0,0,0,0.4);
+.menuElement a:hover {
+    color: #BC3E3E;
 }
 
-.dropdown:hover .dropdown-options {
-    display: block;
+.menuElement {
+    float: right;
+    cursor: pointer;
+    margin-right: 2vw;
 }
 
-.dropdown-options a {
-    display: block;
-    color: #000000;
-    padding: 5px;
+.menuElement a {
+    color: #14224E;
+    display: block; 
+    padding: 16px;
     text-decoration: none;
-    padding:20px 40px;
 }
 
-.dropdown-options a:hover {
-    color: #0a0a23;
-    background-color: #ddd;
-    border-radius:5px;
+#menuList {
+    margin: 10%;
 }
+
+#header ul {
+    list-style-type: none;
+    margin-top: 10px;
+    padding: 0;
+    overflow: hidden;
+    background-color: #FF4A4A;
+    text-align: right;
+}
+
+#logoImage {
+    border-radius: 50%;
+}
+

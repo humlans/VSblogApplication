@@ -1,20 +1,3 @@
-const home = document.getElementById("home");
-const homePage = document.getElementById("homePage");
-
-homePage.addEventListener("click",
-    function() {
-        window.location = "homePage.html";
-    }
-);
-home.addEventListener("click",
-    function() {
-        window.location = "homePage.html";
-    }
-);
-
-
-
-
 function httpGet() {
     const xhr = new XMLHttpRequest();
     xhr.open("GET", "http://localhost:8080/blog-post/get-all-posts");

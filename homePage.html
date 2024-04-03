@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="styles/baseStyle.css"/>
+    <link rel="stylesheet" type="text/css" href="styles/homeStyle.css"/>
     <link rel="icon" type="image/png" href="images/diwa.png">
     <title>Home</title>
 
@@ -12,34 +13,33 @@
     <div class="container">
         <div id="header">
             <div class="logo" id="homePage">
-                <img src= "images/diwa.png" alt="logo" height="160" width="400">
+                <a href="homePage.html"> <img id="logoImage" src="images/diwa.png" alt="Diwa" height="100vw" width="100vw"> </a>
+            </div>
+            <div id="menuDiv">
+                <ul id="menuList">
+                    <li class="menuElement"><a href="about.html">About</a></li>
+                    <li class="menuElement"><a href="editPage.html">Edit post</a></li>
+                    <li class="menuElement"><a href="createPage.html">Create post</a></li>
+                    <li class="menuElement"><a href="homePage.html">Home</a></li>
+                </ul>
             </div>
         </div>
 
         <div id="asideLeft">
-            <p>Left</p>
         </div>
 
         <div id="main">
             <div id="blogPosts"></div>
-
         </div>
 
         <div id="asideRight">
-            <h2>Menu</h2>
-            <dl>
-                <dt>Category</dt>
-                <dd>- blog post title</dd>
-                <dt>Edit</dt>
-                <dd><span class="menuLinks" id="edit">- Edit post</span></dd>
-                <dd><span class="menuLinks" id="create">- Create new post</span></dd>
-            </dl>
         </div>
 
         <div id="footer">
             Contact us
         </div>
     </div>
+    <script src="scripts/menuScript.js"></script>
     <script src="scripts/homePage.js"></script>
 </body>
 </html>

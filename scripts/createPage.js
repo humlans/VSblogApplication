@@ -1,19 +1,3 @@
-const home = document.getElementById("home");
-const homePage = document.getElementById("homePage");
-
-
-home.addEventListener("click", function() {
-  window.location.href = "homePage.html"; // Ändra här till rätt filnamn om det behövs
-});
-
-homePage.addEventListener("click",
-    function() {
-        window.location = "homePage.html";
-    }
-);
-
-
-
 function createBlogPost(){
     const titleForm = document.getElementById("title");
     const textContentForm = document.getElementById("textContent");
@@ -41,23 +25,6 @@ function createBlogPost(){
 }
 
 
-function loadPostForEdit() {
-  // Hämta inläggets ID från localStorage eller URL
-  const postId = new URLSearchParams(window.location.search).get('postId') || localStorage.getItem('editPostId');
-  
-  if (postId) {
-      fetch(`http://localhost:8080/blog-post/get-post/${postId}`)
-      .then(response => response.json())
-      .then(post => {
-          document.getElementById('title').value = post.title;
-          document.getElementById('textContent').value = post.textContent;
-          // och så vidare för andra fält
-      })
-      .catch(error => console.error('Error:', error));
-  }
-}
-
-document.addEventListener('DOMContentLoaded', loadPostForEdit);
 
 
 

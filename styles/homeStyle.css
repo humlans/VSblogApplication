@@ -1,0 +1,19 @@
+.textContent {
+    text-align: left;
+    margin-left: 2%;
+}
+
+.dateContent {
+    float: right;
+    font-size: small;
+    margin: 5px;
+}
+
+.postTitle {
+    text-decoration: underline;
+}
+
+.blogPostDiv {
+    border: 2px solid #14224E;
+    margin: 5%;
+}
