@@ -17,6 +17,17 @@
     text-align: center;
     position: sticky;
     top: 0;
+    display: grid;
+    grid-template-columns: 10vw 90vw;
+}
+
+.logo{
+    cursor: pointer;
+    grid-column: 1;
+}
+
+#menuDiv {
+    grid-column: 2;
 }
 
 #asideLeft {
@@ -45,9 +56,6 @@
     background-color: #BC3E3E;
 }
 
-.logo{
-    cursor: pointer;
-}
 
 button{
     color: #FFE0C5;
@@ -85,4 +93,8 @@ button{
     overflow: hidden;
     background-color: #FF4A4A;
     text-align: right;
+}
+
+#logoImage {
+    border-radius: 50%;
 }

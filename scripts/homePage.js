@@ -7,7 +7,7 @@ function getAllPosts() {
         if (xhr.readyState == 4 && xhr.status == 200) {
             for(let i = 0; i < xhr.response.length; i++){
                 document.getElementById("blogPosts").innerHTML += "<h3>" + xhr.response[i].title + "</h3><br>" +
-                                                                   "<p>" + xhr.response[i].textContent + "</p><br>" +
+                                                                   "<p class='textContent'>" + xhr.response[i].textContent + "</p><br>" +
                                                                    "<p>" + "Date: " + xhr.response[i].date +
                                                                    ", ID: " + xhr.response[i].id +
                                                                    ", userId: " + xhr.response[i].userId + "</p><br><br>";
