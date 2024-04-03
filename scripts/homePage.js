@@ -9,7 +9,7 @@ homePage.addEventListener("click",
 );
 edit.addEventListener("click",
     function() {
-        window.location = "editpage.html";
+        window.location = "editPage.html";
     }
 );
 create.addEventListener("click",

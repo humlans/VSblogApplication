@@ -41,6 +41,49 @@ function httpGet() {
     };
 }
 
+function getBlogPost(){
+    const id = sessionStorage.getItem("id");
+    const title = document.getElementById("title");
+    const userId = document.getElementById("userId");
+    const textContent = document.getElementById("textContent");
+    const date = document.getElementById("date");
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET", "http://localhost:8080/blog-post?id=" + id);
+    xhr.send();
+    xhr.responseType = "json";
+    xhr.onload = () => {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            title.value = xhr.response.title;
+            textContent.value = xhr.response.textContent;
+            date.value = xhr.response.date;
+            userId.value = xhr.response.userId;
+        }
+        else {
+          console.log(`Error: ${xhr.status}`);
+          document.getElementById("blogPosts").innerHTML = "Error something went wrong!"
+        }
+    };
+}
+
+function updateBlogPost(){
+    const id = sessionStorage.getItem("id");
+    const titleForm = document.getElementById("title");
+    const textContentForm = document.getElementById("textContent");
+    const dateForm = document.getElementById("date");
+    const userIdForm = document.getElementById("userId");
+    const xhr = new XMLHttpRequest();
+    xhr.open("PUT", "http://localhost:8080/blog-post/edit-post?id="+ id + "&title=" + titleForm.value + "&textContent=" + textContentForm.value + "&date=" + dateForm.value + "&userId=" + userIdForm.value);
+    xhr.responseType = "json";
+    xhr.onload = () => {
+        if (xhr.status >= 400 ) {
+            console.error(`Failed to update the post: ${xhr.status} ${xhr.statusText}`);
+            alert(`Det gick inte att uppdatera inlägget: ${xhr.status}`);
+        }
+    };
+    alert('Inlägget har uppdaterats!');
+    xhr.send();
+}
+
 //HÄMTA INLÄGG
 function editPost(postId) {
     const postElement = document.getElementById(`post${postId}`);
