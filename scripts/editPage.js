@@ -29,6 +29,7 @@ function httpGet() {
             <textarea id="postContent${post.id}">${post.textContent}</textarea>
             <p>Date: ${post.date}, id: ${post.id}, userId: ${post.userId}</p>
             <button onclick="editPost(${post.id})">Edit</button>
+            <button onclick="deletePost(${post.id})">Delete</button>
             </div>
         
             `).join('');
@@ -64,6 +65,7 @@ function editPost(postId) {
     xhr.onload = () => {
         if (xhr.status == 200) {
             alert('Inlägget har uppdaterats!');
+            httpGet();
         } else {
             console.error(`Failed to update the post: ${xhr.status} ${xhr.statusText}`);
             alert(`Det gick inte att uppdatera inlägget: ${xhr.status}`);
@@ -75,3 +77,21 @@ function editPost(postId) {
     xhr.send(JSON.stringify(postData)); // Skicka den uppdaterade posten som JSON
 }
 
+function deletePost(postId){
+    const xhr = new XMLHttpRequest();
+    xhr.open("DELETE", "http://localhost:8080/blog-post/delete-post?id=" + postId, true);
+    console.log(postId);
+    xhr.onload = () => {
+        if (xhr.status == 200) {
+            alert('Inlägget har raderats!');
+            httpGet();
+        } else {
+            console.error(`Failed to delete the post: ${xhr.status} ${xhr.statusText}`);
+            alert(`Det gick inte att ta bort inlägget: ${xhr.status}`);
+        }
+    };
+    xhr.onerror = function() { // Om det uppstår ett nätverksfel
+        console.error('Nätverksfel');
+    };
+    xhr.send();
+}
