@@ -1,0 +1,22 @@
+.aboutText {
+    font-family: 'Open Sans', Arial, sans-serif;
+    color: #14224E;
+    box-shadow: 0 4px 8px #FF4A4A;
+    padding: 20px;
+}
+
+.aboutText h2 {
+    color: #14224E;
+    margin-bottom: 30px;
+    text-shadow: 1px 1px 20px #FF4A4A;
+    font-size: 30px;
+}
+
+.aboutText p {
+    margin-bottom: 15px;
+    line-height: 2;
+    text-align: center;
+    
+    
+}
+
