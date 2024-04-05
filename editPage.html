@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="styles/baseStyle.css"/>
+    <link rel="stylesheet" type="text/css" href="styles/createPostPage.css"/>
     <link rel="icon" type="image/png" href="images/diwa.png">
     <title>Edit</title>
 
@@ -28,9 +29,7 @@
         </div>
 
         <div id="main">
-            <p>Edit blogpost</p>
-            <button onclick="httpGet()">Test button</button>
-            <p id="testP"></p>
+            <h1>Edit blogpost</h1><br><br>
             <div class="formDiv">
                 <form class="createPost">
                     <label for="title">Title:</label><br>
@@ -42,6 +41,7 @@
                     <label for="date">Date:</label><br>
                     <input id="date" name="date" type="text" required/><br><br>
                     <button id="updateButton" onclick="updateBlogPost()">Update post</button>
+                    <button id="goBackButton" onclick="goBack()">Go back</button>
                 </form><br>
                 <p id="messageResponse"></p>
             </div>

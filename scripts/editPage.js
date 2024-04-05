@@ -1,28 +1,4 @@
-function httpGet() {
-    const xhr = new XMLHttpRequest();
-    xhr.open("GET", "http://localhost:8080/blog-post/get-all-posts");
-    xhr.send();
-    xhr.responseType = "json";
-    xhr.onload = () => {
-        if (xhr.readyState == 4 && xhr.status == 200) {
-            const userPosts = xhr.response.filter(post => post.userId === 2);//UserId sätts här för att filtrera vilka inlägg som kan redigeras
-            const postsHtml = userPosts.map(post => `
-            <div style='margin-top:10px' data-title="${post.title}" data-date="${post.date}" data-userid="${post.userId}" id="post${post.id}">
-            <h2>${post.title}</h2>
-            <textarea id="postContent${post.id}">${post.textContent}</textarea>
-            <p>Date: ${post.date}, id: ${post.id}, userId: ${post.userId}</p>
-            <button onclick="editPost(${post.id})">Edit</button>
-            <button onclick="deletePost(${post.id})">Delete</button>
-            </div>
-        
-            `).join('');
-
-            document.getElementById("testP").innerHTML = postsHtml;
-        } else {
-            console.log(`Error: ${xhr.status}`);
-        }
-    };
-}
+const goBackButton = document.getElementById("goBackButton");
 
 function getBlogPost(){
     const id = sessionStorage.getItem("id");
@@ -66,6 +42,13 @@ function updateBlogPost(){
     alert('Inlägget har uppdaterats!');
     xhr.send();
 }
+
+goBackButton.addEventListener("click",
+    function(event) {
+        event.preventDefault();
+        window.location = "homePageAdmin.html";
+    }
+);
 
 //HÄMTA INLÄGG
 function editPost(postId) {
