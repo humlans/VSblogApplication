@@ -4,6 +4,10 @@
     margin: 0px;
 }
 
+button:hover {
+    color: #FF4A4A;
+}
+
 .container {
     display: grid;
     grid-template-columns: 10vw 80vw 10vw;
@@ -91,7 +95,8 @@ button{
     margin-top: 10px;
     padding: 0;
     overflow: hidden;
-    background-color: #FF4A4A;
+    /* This is to make the background transparent, the last one alpha will turn it transparent*/
+    background-color: rgba(255, 0, 0, 0);
     text-align: right;
 }
 

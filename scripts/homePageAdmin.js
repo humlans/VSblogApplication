@@ -9,13 +9,13 @@ function getLoggedInUsersPosts() {
             document.getElementById("blogPosts").innerHTML = "";
             for(let i = 0; i < xhr.response.length; i++){
                 if(xhr.response[i].userId == userid.value){
-                    document.getElementById("blogPosts").innerHTML += "<h3>" + xhr.response[i].title + "</h3><br>" +
-                                                                    "<p>" + xhr.response[i].textContent + "</p><br>" +
-                                                                    "<p>" + "Date: " + xhr.response[i].date +
+                    document.getElementById("blogPosts").innerHTML += "<div class='editPostDiv'><h3 class='postTitle'>" + xhr.response[i].title + "</h3><br>" +
+                                                                    "<p class='textContent'>" + xhr.response[i].textContent + "</p><br>" +
+                                                                    "<p class='dateContent'>" + "Date: " + xhr.response[i].date +
                                                                     ", ID: " + xhr.response[i].id +
                                                                     ", userId: " + xhr.response[i].userId + "</p>"+
-                                                                    "<button onclick='goToEditPost("+ xhr.response[i].id + ")'>Edit</button>"+
-                                                                    "<button onclick='deletePost("+ xhr.response[i].id + ")'>Delete</button><br><br>";
+                                                                    "<div class='buttonsDiv'><button onclick='goToEditPost("+ xhr.response[i].id + ")'>Edit</button>"+
+                                                                    "<button onclick='deletePost("+ xhr.response[i].id + ")'>Delete</button></div></div><br><br>";
             }
         }
         } else {

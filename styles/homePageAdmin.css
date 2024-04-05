@@ -27,3 +27,28 @@
     background-color: #ddd;
     border-radius:5px;
 }
+
+.editPostDiv {
+    margin: 5%;
+    border: 2px solid #14224E;
+}
+
+.textContent {
+    text-align: left;
+    margin-left: 2%;
+}
+
+.dateContent {
+    float: right;
+    font-size: small;
+    margin: 5px;
+}
+
+.postTitle {
+    text-decoration: underline;
+}
+
+.buttonsDiv {
+    float: right;
+    margin: 1%;
+}
