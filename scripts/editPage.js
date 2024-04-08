@@ -8,9 +8,8 @@ const goBackButton = document.getElementById("goBackButton");
 function getBlogPost(){
     const id = sessionStorage.getItem("id");
     const title = document.getElementById("title");
-    const userId = document.getElementById("userId");
     const textContent = document.getElementById("textContent");
-    const date = document.getElementById("date");
+    
     const xhr = new XMLHttpRequest();
     xhr.open("GET", "http://localhost:8080/blog-post?id=" + id);
     xhr.send();
@@ -19,8 +18,7 @@ function getBlogPost(){
         if (xhr.readyState == 4 && xhr.status == 200) {
             title.value = xhr.response.title;
             textContent.value = xhr.response.textContent;
-            date.value = xhr.response.date;
-            userId.value = xhr.response.userId;
+            sessionStorage.setItem("date", xhr.response.date);
         }
         else {
           console.log(`Error: ${xhr.status}`);
@@ -33,10 +31,10 @@ function updateBlogPost(){
     const id = sessionStorage.getItem("id");
     const titleForm = document.getElementById("title");
     const textContentForm = document.getElementById("textContent");
-    const dateForm = document.getElementById("date");
-    const userIdForm = document.getElementById("userId");
+    const dateForm = sessionStorage.getItem("date");
+    const userIdForm = sessionStorage.getItem("userid");
     const xhr = new XMLHttpRequest();
-    xhr.open("PUT", "http://localhost:8080/blog-post/edit-post?id="+ id + "&title=" + titleForm.value + "&textContent=" + textContentForm.value + "&date=" + dateForm.value + "&userId=" + userIdForm.value);
+    xhr.open("PUT", "http://localhost:8080/blog-post/edit-post?id="+ id + "&title=" + titleForm.value + "&textContent=" + textContentForm.value + "&date=" + dateForm + "&userId=" + userIdForm);
     xhr.responseType = "json";
     xhr.onload = () => {
         if (xhr.status >= 400 ) {

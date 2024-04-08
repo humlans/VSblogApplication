@@ -9,10 +9,10 @@ function createBlogPost(){
     const titleForm = document.getElementById("title");
     const textContentForm = document.getElementById("textContent");
     const dateForm = new Date().toDateString();
-    const userIdForm = document.getElementById("userId");
+    const userIdForm = sessionStorage.getItem("userid");
     const messageResponse = document.getElementById("messageResponse");
     const xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://localhost:8080/blog-post/create-post?title=" + titleForm.value + "&textContent=" + textContentForm.value + "&date=" + dateForm + "&userId=" + userIdForm.value);
+    xhr.open("POST", "http://localhost:8080/blog-post/create-post?title=" + titleForm.value + "&textContent=" + textContentForm.value + "&date=" + dateForm + "&userId=" + userIdForm);
     xhr.send();
     xhr.responseType = "json";
 

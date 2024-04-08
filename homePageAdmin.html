@@ -10,19 +10,17 @@
 
 
 </head>
-<!--<body onload="getAllPosts()">-->
     <body>
     <div class="container">
         <div id="header">
             <div class="logo" id="homePage">
-                <a href="homePage.html"> <img id="logoImage" src="images/diwa.png" alt="Diwa" height="100vw" width="100vw"> </a>
+                <a href="homePageAdmin.html"> <img id="logoImage" src="images/diwa.png" alt="Diwa" height="100vw" width="100vw"> </a>
             </div>
             <div id="menuDiv">
                 <ul id="menuList">
                     <li class="menuElement"><a href="about.html">About</a></li>
-                    <li class="menuElement"><a href="editPage.html">Edit post</a></li>
-                    <li class="menuElement"><a href="createPage.html">Create post</a></li>
-                    <li class="menuElement"><a href="homePage.html">Home</a></li>
+                    <li class="menuElement"><a onclick="goToCreatePage()">Create post</a></li>
+                    <li class="menuElement"><a href="homePage.html">View everyones posts</a></li>
                 </ul>
             </div>
         </div>
@@ -35,14 +33,6 @@
         </div>
 
         <div id="asideRight">
-            <div class="dropdown">
-                <!--<select id="userButton" onchange="getLoggedInUsersPosts()">
-                    <option value="0">None</option >
-                    <option value="1">user1</option >
-                    <option value="2">user2</option >
-              </select >-->
-            </div>
-            <br>
         </div>
 
         <div id="footer">
