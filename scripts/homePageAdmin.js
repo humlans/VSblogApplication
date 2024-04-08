@@ -1,5 +1,6 @@
-function getLoggedInUsersPosts() {
-    const userid  = document.getElementById("userButton");
+const userid = sessionStorage.getItem("userid");
+if(userid != null){    
+    // If userId is send from login page use that id the get that users posts.
     const xhr = new XMLHttpRequest();
     xhr.open("GET", "http://localhost:8080/blog-post/get-all-posts");
     xhr.send();
@@ -8,7 +9,7 @@ function getLoggedInUsersPosts() {
         if (xhr.readyState == 4 && xhr.status == 200) {
             document.getElementById("blogPosts").innerHTML = "";
             for(let i = 0; i < xhr.response.length; i++){
-                if(xhr.response[i].userId == userid.value){
+                if(xhr.response[i].userId == userid){
                     document.getElementById("blogPosts").innerHTML += "<div class='editPostDiv'><h3 class='postTitle'>" + xhr.response[i].title + "</h3><br>" +
                                                                     "<p class='textContent'>" + xhr.response[i].textContent + "</p><br>" +
                                                                     "<p class='dateContent'>" + "Date: " + xhr.response[i].date +
@@ -24,7 +25,6 @@ function getLoggedInUsersPosts() {
     };
 }
 
-//HÄMTA INLÄGG
 function goToEditPost(postId) {
     console.log(postId);
     sessionStorage.setItem("id", postId);
@@ -48,30 +48,4 @@ function deletePost(postId){
         console.error('Nätverksfel');
     };
     xhr.send();
-}
-
-function httpGet() {
-    const xhr = new XMLHttpRequest();
-    xhr.open("GET", "http://localhost:8080/blog-post/get-all-posts");
-    xhr.send();
-    xhr.responseType = "json";
-    xhr.onload = () => {
-        if (xhr.readyState == 4 && xhr.status == 200) {
-            const userPosts = xhr.response.filter(post => post.userId === 2);//UserId sätts här för att filtrera vilka inlägg som kan redigeras
-            const postsHtml = userPosts.map(post => `
-            <div style='margin-top:10px' data-title="${post.title}" data-date="${post.date}" data-userid="${post.userId}" id="post${post.id}">
-            <h2>${post.title}</h2>
-            <textarea id="postContent${post.id}">${post.textContent}</textarea>
-            <p>Date: ${post.date}, id: ${post.id}, userId: ${post.userId}</p>
-            <button onclick="editPost(${post.id})">Edit</button>
-            <button onclick="deletePost(${post.id})">Delete</button>
-            </div>
-        
-            `).join('');
-
-            document.getElementById("testP").innerHTML = postsHtml;
-        } else {
-            console.log(`Error: ${xhr.status}`);
-        }
-    };
 }

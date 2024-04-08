@@ -1,0 +1,44 @@
+const viewPageButton = document.getElementById("viewPageButton");
+const loginButton = document.getElementById("loginButton");
+
+viewPageButton.addEventListener("click", 
+    function(event){
+        event.preventDefault();
+        window.location = "homePage.html";
+    }
+);
+
+function login(){
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+    const xhr = new XMLHttpRequest();
+    // A post request to see if user can log in.
+    xhr.open("POST", "http://localhost:8080/user/login?username=" + username + "&password=" + password, true);
+    xhr.send();
+    xhr.responseType = "json";
+    xhr.onload = () => {
+        if (xhr.status >= 400) {      
+            alert("Error: Failed to log in!");
+            window.location = "loginPage.html";
+        }
+        else if(xhr.status == 200) {
+            const xhrUser = new XMLHttpRequest();
+            // When login successed get user from database to get the userId.
+            xhrUser.open("GET", "http://localhost:8080/user?username=" + username, true);
+            xhrUser.send();
+            xhrUser.responseType = "json";
+            xhrUser.onload = () => {
+                if(xhrUser.status >= 400){
+                    alert("Error: Something went wrong!");
+                    window.location = "loginPage.html";
+                }
+                else if(xhrUser.status == 200){
+                    // Send userId the homeAdminPage.
+                    sessionStorage.setItem("userid", xhrUser.response.id);
+                }
+            };
+            window.location = "homePageAdmin.html";
+        }
+    };
+    window.location = "loginPage.html";
+}
