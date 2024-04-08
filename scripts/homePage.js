@@ -1,3 +1,7 @@
+document.addEventListener("DOMContentLoaded", function() {
+    footerMotto.updateMotto('homePage');
+});
+
 const edit = document.getElementById("edit");
 const homePage = document.getElementById("homePage");
 const create = document.getElementById("create");
@@ -38,3 +42,8 @@ function getAllPosts() {
         }
     };
 }
+
+
+
+
+

@@ -1,3 +1,8 @@
+document.addEventListener("DOMContentLoaded", function() {
+    footerMotto.updateMotto('homePageAdmin');
+});
+
+
 const userid = sessionStorage.getItem("userid");
 if(userid != null){    
     // If userId is send from login page use that id the get that users posts.

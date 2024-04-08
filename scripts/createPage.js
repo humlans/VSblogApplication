@@ -1,3 +1,8 @@
+document.addEventListener("DOMContentLoaded", function() {
+  footerMotto.updateMotto('createPage');
+});
+
+
 const goBackButton = document.getElementById("goBackButton");
 
 function createBlogPost(){
@@ -32,3 +37,4 @@ goBackButton.addEventListener("click",
         window.location = "homePageAdmin.html";
     }
 );
+
