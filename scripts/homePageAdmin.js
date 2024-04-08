@@ -34,6 +34,11 @@ function goToEditPost(postId) {
     window.location = "editPage.html";
 }
 
+function goToCreatePage() {
+    sessionStorage.setItem("userid", userid);
+    window.location = "createPage.html";
+}
+
 function deletePost(postId){
     const xhr = new XMLHttpRequest();
     xhr.open("DELETE", "http://localhost:8080/blog-post/delete-post?id=" + postId, true);
