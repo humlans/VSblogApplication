@@ -1,3 +1,8 @@
+document.addEventListener("DOMContentLoaded", function() {
+  footerMotto.updateMotto('createPage');
+});
+
+
 const goBackButton = document.getElementById("goBackButton");
 
 function createBlogPost(){
@@ -6,7 +11,7 @@ function createBlogPost(){
     const dateForm = new Date().toDateString();
     const userIdForm = document.getElementById("userId");
     const xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://localhost:8080/blog-post/create-post?title=" + titleForm.value + "&textContent=" + textContentForm.value + "&date=" + dateForm + "&userId=" + userIdForm.value);
+    xhr.open("POST", "http://localhost:8080/blog-post/create-post?title=" + titleForm.value + "&textContent=" + textContentForm.value + "&date=" + dateForm + "&userId=" + userIdForm);
     xhr.send();
     xhr.responseType = "json";
 
@@ -28,3 +33,4 @@ goBackButton.addEventListener("click",
         window.location = "homePageAdmin.html";
     }
 );
+

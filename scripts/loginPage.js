@@ -1,3 +1,8 @@
+document.addEventListener("DOMContentLoaded", function() {
+    footerMotto.updateMotto('loginPage');
+});
+
+
 const viewPageButton = document.getElementById("viewPageButton");
 const loginButton = document.getElementById("loginButton");
 
@@ -35,7 +40,12 @@ function login(){
                 else if(xhrUser.status == 200){
                     // Send userId the homeAdminPage.
                     sessionStorage.setItem("userid", xhrUser.response.id);
+
+                    document.addEventListener("DOMContentLoaded", function() {
+                        footerMotto.updateMotto('homePageAdmin');
+                    });
                 }
+            
             };
             window.location = "homePageAdmin.html";
         }

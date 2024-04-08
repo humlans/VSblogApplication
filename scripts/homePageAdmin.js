@@ -1,3 +1,8 @@
+document.addEventListener("DOMContentLoaded", function() {
+    footerMotto.updateMotto('homePageAdmin');
+});
+
+
 const userid = sessionStorage.getItem("userid");
 getLoggedInUsersPosts();
 
@@ -40,6 +45,11 @@ function goToEditPost(postId) {
     sessionStorage.setItem("userid", userid);
     // Redirect to editPage.
     window.location = "editPage.html";
+}
+
+function goToCreatePage() {
+    sessionStorage.setItem("userid", userid);
+    window.location = "createPage.html";
 }
 
 function deletePost(postId){

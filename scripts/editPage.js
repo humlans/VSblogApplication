@@ -1,3 +1,8 @@
+document.addEventListener("DOMContentLoaded", function() {
+    footerMotto.updateMotto('editPage');
+  });
+
+
 const goBackButton = document.getElementById("goBackButton");
 
 function getBlogPost(){
@@ -102,3 +107,6 @@ function deletePost(postId){
     };
     xhr.send();
 }
+
+
+
