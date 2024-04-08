@@ -26,8 +26,8 @@ if(userid != null){
 }
 
 function goToEditPost(postId) {
-    console.log(postId);
     sessionStorage.setItem("id", postId);
+    sessionStorage.setItem("userid", userid);
     window.location = "editPage.html";
 }
 

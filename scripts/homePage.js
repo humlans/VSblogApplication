@@ -7,18 +7,6 @@ homePage.addEventListener("click",
         window.location = "homePage.html";
     }
 );
-edit.addEventListener("click",
-    function() {
-        window.location = "editPage.html";
-    }
-);
-create.addEventListener("click",
-    function() {
-        console.log("test");
-        window.location = "createpage.html";
-    }
-);
-
 function getAllPosts() {
     const xhr = new XMLHttpRequest();
     xhr.open("GET", "http://localhost:8080/blog-post/get-all-posts");
