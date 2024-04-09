@@ -13,15 +13,20 @@ viewPageButton.addEventListener("click",
     }
 );
 
-function login(){
+loginButton.addEventListener("click", login);
+
+function login(event){
+    event.preventDefault();
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
+    console.log(username + "0" + password);
     const xhr = new XMLHttpRequest();
     // A post request to see if user can log in.
     xhr.open("POST", "http://localhost:8080/user/login?username=" + username + "&password=" + password, true);
     xhr.send();
     xhr.responseType = "json";
     xhr.onload = () => {
+        console.log("First: " + xhr.status);
         if (xhr.status >= 400) {      
             alert("Error: Failed to log in!");
             window.location = "loginPage.html";
@@ -33,11 +38,14 @@ function login(){
             xhrUser.send();
             xhrUser.responseType = "json";
             xhrUser.onload = () => {
+                console.log("Second: " + xhr.status);
+
                 if(xhrUser.status >= 400){
                     alert("Error: Something went wrong!");
                     window.location = "loginPage.html";
                 }
                 else if(xhrUser.status == 200){
+                    console.log(xhrUser.response);
                     // Send userId the homeAdminPage.
                     sessionStorage.setItem("userid", xhrUser.response.id);
 
@@ -47,8 +55,8 @@ function login(){
                 }
             
             };
+            alert("Stop.");
             window.location = "homePageAdmin.html";
         }
     };
-    window.location = "loginPage.html";
 }
