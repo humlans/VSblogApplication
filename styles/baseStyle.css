@@ -55,12 +55,31 @@ button:hover {
     grid-row: 2;
     padding: 10%;
 }
+/*
 #footer {
     grid-column: 1/4;
     grid-row: 3;
     background-color: #BC3E3E;
+    text-align: center;
+
+}
+*/
+
+#footer {
+    display: flex;
+    align-items: center; 
+    justify-content: center; 
+    grid-column: 1/4;
+    grid-row: 3;
+    background-color: #BC3E3E;
+    height: 100px; 
 }
 
+#footerMotto {
+    color: #14224E; 
+    font-size: 15px;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
 
 button{
     color: #FFE0C5;
