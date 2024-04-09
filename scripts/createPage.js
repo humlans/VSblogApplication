@@ -7,22 +7,24 @@ function createBlogPost(){
     const userIdForm = sessionStorage.getItem("userid");
     const messageResponse = document.getElementById("messageResponse");
     const xhr = new XMLHttpRequest();
+    // HTML textarea preserves the line breaks. It is here that it disappears because we turn it into a string. 
+    //I think it's saved as /n here but when reading the html we need the <br> but that is not secure from 
+    //attacking and sending in working code in the database...
     xhr.open("POST", "http://localhost:8080/blog-post/create-post?title=" + titleForm.value + "&textContent=" + textContentForm.value + "&date=" + dateForm + "&userId=" + userIdForm);
     xhr.send();
     xhr.responseType = "json";
 
-    //Do not work correctly
-    xhr.onload = () => alert(xhr.response);
-    /*xhr.onload = () => {
-        if (xhr.readyState == 4 && xhr.status == 200) {
-          console.log(xhr.response);
-          messageResponse.innerHTML = "Created blog post";
-        }
-        else {
-          console.log(`Error: ${xhr.status}`);
-          messageResponse.innerHTML = "Error something went wrong!";
-        }
-    };*/
+    console.log(+ titleForm.value + "&textContent=" + textContentForm.value + "&date=" + dateForm + "&userId=" + userIdForm);
+
+    xhr.onload = () => {
+      if (xhr.readyState == 4 && xhr.status == 201) {
+        alert("Created blog post");
+      }
+      else {
+        console.log(`Error: ${xhr.status}`);
+        alert("Error something went wrong!");
+      }
+    };
 
 }
 
