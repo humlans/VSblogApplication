@@ -17,7 +17,7 @@ function getBlogPost(){
     xhr.onload = () => {
         if (xhr.readyState == 4 && xhr.status == 200) {
             title.value = xhr.response.title;
-            textContent.value = xhr.response.textContent;
+            textContent.value = xhr.response.textContent.replace(/<br\s*\/?>/gi, "\n");///(?:\r\n|\r|\n)/g
             sessionStorage.setItem("date", xhr.response.date);
         }
         else {
@@ -33,8 +33,9 @@ function updateBlogPost(){
     const textContentForm = document.getElementById("textContent");
     const dateForm = sessionStorage.getItem("date");
     const userIdForm = sessionStorage.getItem("userid");
+    let textContentToSend = textContentForm.value.replace(/(?:\r\n|\r|\n)/g, "<br>");
     const xhr = new XMLHttpRequest();
-    xhr.open("PUT", "http://localhost:8080/blog-post/edit-post?id="+ id + "&title=" + titleForm.value + "&textContent=" + textContentForm.value + "&date=" + dateForm + "&userId=" + userIdForm);
+    xhr.open("PUT", "http://localhost:8080/blog-post/edit-post?id="+ id + "&title=" + titleForm.value + "&textContent=" + textContentToSend + "&date=" + dateForm + "&userId=" + userIdForm);
     xhr.responseType = "json";
     xhr.onload = () => {
         if (xhr.status >= 400 ) {
