@@ -55,7 +55,6 @@ function login(event){
                 }
             
             };
-            alert("Stop.");
             window.location = "homePageAdmin.html";
         }
     };

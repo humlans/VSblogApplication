@@ -10,7 +10,7 @@
 
 
 </head>
-    <body>
+    <body onload="updateLogOutButton()">
     <div class="container">
         <div id="header">
             <div class="logo" id="homePage">
@@ -19,8 +19,8 @@
             <div id="menuDiv">
                 <ul id="menuList">
                     <li class="menuElement"><a href="homePage.html">View everyones posts</a></li>
-                    <li class="menuElement"><a onclick="goToCreatePage()">Create post</a></li>
-                    <li class="menuElement"><button class="logOutButton">Log out</button> </li>
+                    <li class="menuElement"><a id="goToCreatePage">Create post</a></li>
+                    <button id="logOutButton">Log out</button>
                 </ul>
             </div>
         </div>

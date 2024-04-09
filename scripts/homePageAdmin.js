@@ -22,7 +22,7 @@ function getLoggedInUsersPosts(){
                     // Fill in blogPost-div with blogPost that the logged in user have made.
                     if(xhr.response[i].userId == userid){
                         // Layout of the blogPost-div to the main of the homePageAdmin.html-page.
-                        document.getElementById("blogPosts").innerHTML += "<div class='editPostDiv'><h3 class='postTitle'>" + xhr.response[i].title + "</h3><br>" +
+                        document.getElementById("blogPosts").innerHTML += "<div class='editPostDiv'><h3 class='postTitle' id='title'>" + xhr.response[i].title + "</h3><br>" +
                                                                         "<p class='textContent'>" + xhr.response[i].textContent + "</p><br>" +
                                                                         "<p class='dateContent'>" + "Date: " + xhr.response[i].date +
                                                                         ", ID: " + xhr.response[i].id +
@@ -47,30 +47,48 @@ function goToEditPost(postId) {
     window.location = "editPage.html";
 }
 
+const goToCreatePageButton = document.getElementById("goToCreatePage");
+goToCreatePageButton.addEventListener("click", goToCreatePage); 
 function goToCreatePage() {
     sessionStorage.setItem("userid", userid);
     window.location = "createPage.html";
 }
 
 function deletePost(postId){
-    const xhr = new XMLHttpRequest();
-    // Make a DELETE request to delete post.
-    xhr.open("DELETE", "http://localhost:8080/blog-post/delete-post?id=" + postId, true);
-    xhr.onload = () => {
-        if (xhr.status == 200) {
-            // If DELETE request successed alert message to user.
-            alert('Inlägget har raderats!');
-            // Reload post.
-            getLoggedInUsersPosts();
-        } else {
-            // If DELETE request fails print error code and text to console.
-            console.error(`Failed to delete the post: ${xhr.status} ${xhr.statusText}`);
-            // Alert user what happend.
-            alert(`Det gick inte att ta bort inlägget: ${xhr.status}`);
-        }
-    };
-    xhr.onerror = function() { // Om det uppstår ett nätverksfel
-        console.error('Nätverksfel');
-    };
-    xhr.send();
+    if (window.confirm("Do you want to delete the post?")){
+        const xhr = new XMLHttpRequest();
+        // Make a DELETE request to delete post.
+        xhr.open("DELETE", "http://localhost:8080/blog-post/delete-post?id=" + postId, true);
+        xhr.onload = () => {
+            if (xhr.status == 200) {
+                // If DELETE request successed alert message to user.
+                alert('The post has been deleted!');
+                // Reload post.
+                getLoggedInUsersPosts();
+            } else {
+                // Alert user what happend.
+                alert('Failed to delete the post: ${xhr.status}');
+            }
+        };
+        xhr.send();
+    }
+}
+
+const logOutButton = document.getElementById("logOutButton");
+logOutButton.addEventListener("click", logOut);
+function logOut(event) {
+    event.preventDefault;
+    if (window.confirm("Do you want to log out?")) {
+        sessionStorage.clear();
+        window.location = "loginPage.html";
+    }
+}
+
+function updateLogOutButton() {
+    if(sessionStorage.getItem("userid") == null){
+        logOutButton.style.display = "hidden";
+    }
+    else{
+        logOutButton.style.display = "block";
+    }
 }

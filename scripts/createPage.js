@@ -3,33 +3,47 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 const goBackButton = document.getElementById("goBackButton");
-
-function createBlogPost(){
-    const titleForm = document.getElementById("title");
-    const textContentForm = document.getElementById("textContent");
-    const dateForm = new Date().toDateString();
-    const userIdForm = sessionStorage.getItem("userid");
-    const xhr = new XMLHttpRequest();
-    let textContentToSend = textContentForm.value.replace(/(?:\r\n|\r|\n)/g, "<br>");
-    xhr.open("POST", "http://localhost:8080/blog-post/create-post?title=" + titleForm.value + "&textContent=" + textContentToSend + "&date=" + dateForm + "&userId=" + userIdForm, true);
-    xhr.send();
-    xhr.responseType = "json";
-    xhr.onload = () => {
-        if (xhr.readyState == 4 && xhr.status == 201) {
-          alert("Created blog post");
-        }
-        else {
-          console.log(`Error: ${xhr.status}`);
-          alert("Error something went wrong!");
-        }
-    };
-
-}
-
 goBackButton.addEventListener("click",
     function(event) {
         event.preventDefault();
         window.location = "homePageAdmin.html";
     }
 );
+
+const createPostButton = document.getElementById("createButton");
+createPostButton.addEventListener("click", createBlogPost);
+
+function createBlogPost(event){
+  event.preventDefault();
+  const titleForm = document.getElementById("title");
+  const textContentForm = document.getElementById("textContent");
+  const dateForm = new Date().toDateString();
+  const userIdForm = sessionStorage.getItem("userid");
+  const xhr = new XMLHttpRequest();
+  let textContentToSend = textContentForm.value.replace(/(?:\r\n|\r|\n)/g, "<br>");
+  xhr.open("POST", "http://localhost:8080/blog-post/create-post?title=" + titleForm.value + "&textContent=" + textContentToSend + "&date=" + dateForm + "&userId=" + userIdForm, true);
+  xhr.send();
+  xhr.responseType = "json";
+  xhr.onload = () => {
+      if (xhr.readyState == 4 && xhr.status == 201) {
+        if (window.confirm("Created blog post. Would you like to see your posts?")) {
+          window.location = "homePageAdmin.html";
+          textContentForm.value = "";
+          titleForm.value = "";
+        }
+        else {
+          textContentForm.value = "";
+          titleForm.value = "";
+        }
+      }
+      else {
+        console.log('Error: ${xhr.status}');
+        alert("Error something went wrong!");
+      }
+  };
+  
+
+}
+
+
 

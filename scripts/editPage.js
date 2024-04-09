@@ -4,6 +4,12 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 const goBackButton = document.getElementById("goBackButton");
+goBackButton.addEventListener("click",
+    function(event) {
+        event.preventDefault();
+        window.location = "homePageAdmin.html";
+    }
+);
 
 function getBlogPost(){
     const id = sessionStorage.getItem("id");
@@ -17,7 +23,7 @@ function getBlogPost(){
     xhr.onload = () => {
         if (xhr.readyState == 4 && xhr.status == 200) {
             title.value = xhr.response.title;
-            textContent.value = xhr.response.textContent.replace(/<br\s*\/?>/gi, "\n");///(?:\r\n|\r|\n)/g
+            textContent.value = xhr.response.textContent.replace(/<br\s*\/?>/gi, "\n");
             sessionStorage.setItem("date", xhr.response.date);
         }
         else {
@@ -27,7 +33,11 @@ function getBlogPost(){
     };
 }
 
-function updateBlogPost(){
+const updateButton = document.getElementById("updateButton");
+updateButton.addEventListener("click", updateBlogPost);
+
+function updateBlogPost(event){
+    event.preventDefault();
     const id = sessionStorage.getItem("id");
     const titleForm = document.getElementById("title");
     const textContentForm = document.getElementById("textContent");
@@ -39,73 +49,10 @@ function updateBlogPost(){
     xhr.responseType = "json";
     xhr.onload = () => {
         if (xhr.status >= 400 ) {
-            console.error(`Failed to update the post: ${xhr.status} ${xhr.statusText}`);
-            alert(`Det gick inte att uppdatera inlägget: ${xhr.status}`);
+            alert('Failed to update the post: ${xhr.status}');
         }
     };
-    alert('Inlägget har uppdaterats!');
-    xhr.send();
-}
-
-goBackButton.addEventListener("click",
-    function(event) {
-        event.preventDefault();
-        window.location = "homePageAdmin.html";
-    }
-);
-
-//HÄMTA INLÄGG
-function editPost(postId) {
-    const postElement = document.getElementById(`post${postId}`);
-    const postContent = document.getElementById(`postContent${postId}`).value;
-    const title = postElement.getAttribute('data-title');
-    const date = postElement.getAttribute('data-date');
-    const userId = postElement.getAttribute('data-userid');
-
-    const postData = {
-        id: postId,
-        title: title, // Använd faktiskt värde
-        textContent: postContent,
-        date: date, // Använd faktiskt värde
-        userId: userId, // Använd faktiskt värde
-    };
-
-
-    //UPDATEA INLÄGG
-    const xhr = new XMLHttpRequest();
-    xhr.open("PUT", "http://localhost:8080/blog-post/edit-post", true);
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.onload = () => {
-        if (xhr.status == 200) {
-            alert('Inlägget har uppdaterats!');
-            httpGet();
-        } else {
-            console.error(`Failed to update the post: ${xhr.status} ${xhr.statusText}`);
-            alert(`Det gick inte att uppdatera inlägget: ${xhr.status}`);
-        }
-    };
-    xhr.onerror = function() { // Om det uppstår ett nätverksfel
-        console.error('Nätverksfel');
-    };
-    xhr.send(JSON.stringify(postData)); // Skicka den uppdaterade posten som JSON
-}
-
-function deletePost(postId){
-    const xhr = new XMLHttpRequest();
-    xhr.open("DELETE", "http://localhost:8080/blog-post/delete-post?id=" + postId, true);
-    console.log(postId);
-    xhr.onload = () => {
-        if (xhr.status == 200) {
-            alert('Inlägget har raderats!');
-            httpGet();
-        } else {
-            console.error(`Failed to delete the post: ${xhr.status} ${xhr.statusText}`);
-            alert(`Det gick inte att ta bort inlägget: ${xhr.status}`);
-        }
-    };
-    xhr.onerror = function() { // Om det uppstår ett nätverksfel
-        console.error('Nätverksfel');
-    };
+    alert(titleForm.value + ' has been updated!');
     xhr.send();
 }
 
