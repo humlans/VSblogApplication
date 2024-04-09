@@ -2,7 +2,6 @@ document.addEventListener("DOMContentLoaded", function() {
   footerMotto.updateMotto('createPage');
 });
 
-
 const goBackButton = document.getElementById("goBackButton");
 
 function createBlogPost(){
@@ -11,13 +10,10 @@ function createBlogPost(){
     const dateForm = new Date().toDateString();
     const userIdForm = sessionStorage.getItem("userid");
     const xhr = new XMLHttpRequest();
-    // HTML textarea preserves the line breaks. It is here that it disappears because we turn it into a string. 
-    //I think it's saved as /n here but when reading the html we need the <br> but that is not secure from 
-    //attacking and sending in working code in the database...
-    xhr.open("POST", "http://localhost:8080/blog-post/create-post?title=" + titleForm.value + "&textContent=" + textContentForm.value + "&date=" + dateForm + "&userId=" + userIdForm);
+    let textContentToSend = textContentForm.value.replace(/(?:\r\n|\r|\n)/g, "<br>");
+    xhr.open("POST", "http://localhost:8080/blog-post/create-post?title=" + titleForm.value + "&textContent=" + textContentToSend + "&date=" + dateForm + "&userId=" + userIdForm, true);
     xhr.send();
     xhr.responseType = "json";
-
     xhr.onload = () => {
         if (xhr.readyState == 4 && xhr.status == 201) {
           alert("Created blog post");

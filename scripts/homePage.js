@@ -5,12 +5,13 @@ document.addEventListener("DOMContentLoaded", function() {
 const edit = document.getElementById("edit");
 const homePage = document.getElementById("homePage");
 const create = document.getElementById("create");
-//TEST
+
 homePage.addEventListener("click",
     function() {
         window.location = "homePage.html";
     }
 );
+
 function getAllPosts() {
     const xhr = new XMLHttpRequest();
     xhr.open("GET", "http://localhost:8080/blog-post/get-all-posts");
