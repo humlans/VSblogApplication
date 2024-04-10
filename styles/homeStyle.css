@@ -15,5 +15,6 @@
 
 .blogPostDiv {
     border: 2px solid #14224E;
+    border-radius: 20px;
     margin: 5%;
 }

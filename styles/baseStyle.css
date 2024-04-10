@@ -24,6 +24,7 @@ button:hover {
     top: 0;
     display: grid;
     grid-template-columns: 10vw 90vw;
+    height: 72px ;
 }
 
 .logo{
@@ -97,10 +98,21 @@ button{
     float: left;
     cursor: pointer;
     margin-right: 2vw;
+    background-color: #14224E;
+    border-radius: 15px;
+    transition: background-color 0.3s ease;
+}
+
+.menuElement:hover {
+    background-color: #BC3E3E; /* Ändrar bakgrundsfärgen vid hover */
+}
+
+.menuElement:hover a {
+    color: #14224E; /* Ändrar textfärgen till vit vid hover */
 }
 
 .menuElement a {
-    color: #14224E;
+    color: #FFE0C5;
     display: block; 
     padding: 16px;
     text-decoration: none;
