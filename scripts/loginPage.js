@@ -38,24 +38,20 @@ function login(event){
             xhrUser.send();
             xhrUser.responseType = "json";
             xhrUser.onload = () => {
-                console.log("Second: " + xhr.status);
-
                 if(xhrUser.status >= 400){
                     alert("Error: Something went wrong!");
                     window.location = "loginPage.html";
                 }
                 else if(xhrUser.status == 200){
-                    console.log(xhrUser.response);
                     // Send userId the homeAdminPage.
                     sessionStorage.setItem("userid", xhrUser.response.id);
-
                     document.addEventListener("DOMContentLoaded", function() {
                         footerMotto.updateMotto('homePageAdmin');
                     });
+                    // Redirect to homePageAdmin
+                    window.location = "homePageAdmin.html";
                 }
-            
             };
-            window.location = "homePageAdmin.html";
         }
     };
 }

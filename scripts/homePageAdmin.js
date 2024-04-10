@@ -2,7 +2,6 @@ document.addEventListener("DOMContentLoaded", function() {
     footerMotto.updateMotto('homePageAdmin');
 });
 
-
 const userid = sessionStorage.getItem("userid");
 getLoggedInUsersPosts();
 
