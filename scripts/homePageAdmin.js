@@ -23,7 +23,7 @@ function getLoggedInUsersPosts(){
                     // Fill in blogPost-div with blogPost that the logged in user have made.
                     if(xhr.response[i].userId == userid){
                         // Layout of the blogPost-div to the main of the homePageAdmin.html-page.
-                        document.getElementById("blogPosts").innerHTML += "<div class='editPostDiv'><h3 class='postTitle' id='title'>" + xhr.response[i].title + "</h3><br>" +
+                        document.getElementById("blogPosts").innerHTML += "<div class='blogPostDiv'><h3 class='postTitle' id='title'>" + xhr.response[i].title + "</h3><br>" +
                                                                         "<p class='textContent'>" + xhr.response[i].textContent + "</p><br>" +
                                                                         "<p class='dateContent'>" + "Date: " + xhr.response[i].date +
                                                                         ", ID: " + xhr.response[i].id +
