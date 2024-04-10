@@ -53,6 +53,22 @@
     margin: 1%;
 }
 
-#logOutButton {
-    margin-top: 7px;
+@media (min-width: 500px) and (max-width: 650px) {
+    #logOutButton {
+        margin-top: 10px;
+        display: none;
+    }
+}
+@media (max-width: 500px) {
+    #logOutButton {
+        display: none;
+        margin-left: 25vw;
+        text-align: center;
+    }
+}
+@media (min-width: 650px) {
+    #logOutButton {
+        margin-top: 10px;
+        display: none;
+    }
 }

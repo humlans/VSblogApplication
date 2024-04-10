@@ -3,10 +3,12 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 const userid = sessionStorage.getItem("userid");
+const logOutButton = document.getElementById("logOutButton");
 getLoggedInUsersPosts();
 
 function getLoggedInUsersPosts(){
     if(userid != null){    
+        logOutButton.style.display = "block";
         // If userId is send from login page use that id the get that users posts.
         const xhr = new XMLHttpRequest();
         // Send a GET-request to get all posts.
@@ -35,6 +37,9 @@ function getLoggedInUsersPosts(){
                 console.log(`Error: ${xhr.status}`);
             }
         };
+    }
+    else{
+        logOutButton.style.display = "none";
     }
 }
 function goToEditPost(postId) {
@@ -73,21 +78,12 @@ function deletePost(postId){
     }
 }
 
-const logOutButton = document.getElementById("logOutButton");
+
 logOutButton.addEventListener("click", logOut);
 function logOut(event) {
     event.preventDefault;
     if (window.confirm("Do you want to log out?")) {
         sessionStorage.clear();
         window.location = "loginPage.html";
-    }
-}
-
-function updateLogOutButton() {
-    if(sessionStorage.getItem("userid") == null){
-        logOutButton.style.display = "hidden";
-    }
-    else{
-        logOutButton.style.display = "block";
     }
 }

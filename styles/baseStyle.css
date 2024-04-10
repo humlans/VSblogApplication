@@ -3,18 +3,44 @@
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     margin: 0px;
 }
+@media (min-width: 500px) and (max-width: 650px) {
+    .container {
+        display: grid;
+        grid-template-columns: 15vw 80vw 5vw;
+        grid-template-rows: 80px auto 10vh;
+        height: 100vh;
+    }
+    #menuList {
+        margin: 10%;
+        float: right;
+    }
+}
+@media (max-width: 500px) {
+    .container {
+        display: grid;
+        grid-template-columns: 12vw 88vw ;
+        grid-template-rows: 170px auto 10vw;
+        height: 100vh;
+    }
+    .menuElement {
+        float: none;
+        cursor: pointer;
+        text-align: center;
+        width: 100%;
+    }
+}
+@media (min-width: 650px) {
+    .container {
+        display: grid;
+        grid-template-columns: 10vw 80vw 10vw;
+        grid-template-rows: 70px auto 10vw;
+        height: 100vh;
+    }
+}
 
 button:hover {
     color: #FF4A4A;
 }
-
-.container {
-    display: grid;
-    grid-template-columns: 10vw 80vw 10vw;
-    grid-template-rows: 5vw auto 10vw;
-    height: 100vh;
-}
-
 #header {
     grid-column: 1/4;
     grid-row: 1;
@@ -55,15 +81,6 @@ button:hover {
     grid-row: 2;
     padding: 10%;
 }
-/*
-#footer {
-    grid-column: 1/4;
-    grid-row: 3;
-    background-color: #BC3E3E;
-    text-align: center;
-
-}
-*/
 
 #footer {
     display: flex;
@@ -123,4 +140,3 @@ button{
 #logoImage {
     border-radius: 50%;
 }
-

@@ -26,7 +26,6 @@ function login(event){
     xhr.send();
     xhr.responseType = "json";
     xhr.onload = () => {
-        console.log("First: " + xhr.status);
         if (xhr.status >= 400) {      
             alert("Error: Failed to log in!");
             window.location = "loginPage.html";
