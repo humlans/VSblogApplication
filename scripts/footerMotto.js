@@ -1,20 +1,25 @@
+// Defines a class for managing the footer motto based on the current page.
 class FooterMotto {
+    // Constructor takes an object of page mottos as its argument.
     constructor(pageMottos) {
+        // Stores the page-specific mottos.
         this.pageMottos = pageMottos;
+        // Sets a default motto for pages without a specific motto.
         this.defaultMotto = "Welcome to our site!";
     }
 
+    // Method to update the motto displayed in the footer based on the current page.
     updateMotto(currentPage) {
-        // Hämta motto från pageMottos baserat på currentPage
+        // Retrieves the motto for the current page from pageMottos; uses defaultMotto if not found.
         const motto = this.pageMottos[currentPage] || this.defaultMotto;
+        // Updates the text content of the 'footerMotto' element with the retrieved motto.
         document.getElementById('footerMotto').textContent = motto;
-        
-        // Spara nuvarande sidas motto i sessionStorage för snabb återhämtning
+        // Saves the current motto to sessionStorage for quick retrieval.
         sessionStorage.setItem('currentMotto', motto);
     }
 }
 
-// Definiera motton för olika sidor
+// Defines an object containing mottos for different pages.
 const pageMottos = {
     homePage: "Express yourself, feel inspired, informed, and, above all, welcomed!",
     aboutPage: "Learn more about us",
@@ -24,5 +29,5 @@ const pageMottos = {
     homePageAdmin: "The power of admin in your hands"
 };
 
-// Skapa en instans av FooterMotto-klassen med sidmotton
+// Creates an instance of the FooterMotto class with the defined page mottos.
 const footerMotto = new FooterMotto(pageMottos);
