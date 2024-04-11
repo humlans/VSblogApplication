@@ -10,7 +10,7 @@
 
 
 </head>
-<body onload="getAllPosts()">
+<body id="diwaBody">
     <div class="container">
         <div id="header">
             <div class="logo" id="homePage">
@@ -21,30 +21,20 @@
                     <li class="menuElement"><a href="about.html">About</a></li>
                     <li class="menuElement"><a href="homePage.html">Home</a></li>
                     <li class="menuElement"><a href="loginPage.html">Login</a></li>
-
-                
-                    <div id="sortControls">
-                        <select id="sortSelect">
-                            <option value="username">Username</option>
-                            <option value="dateNewest">Newest</option>
-                            <option value="dateOldest">Oldest</option>
-                        </select>
-                        <button onclick="applySort()">Apply Sort</button>
-                    </div>
-
-
                 </ul>
             </div>
         </div>
-
         <div id="asideLeft">
         </div>
-
         <div id="main">
-
-
-            
-
+            <div id="sortControls">
+                <select id="sortSelect">
+                    <option value="username">Username</option>
+                    <option value="dateNewest">Newest</option>
+                    <option value="dateOldest">Oldest</option>
+                </select>
+                <button id="sortPosts">Apply Sort</button>
+            </div>
             <div id="blogPosts"></div>
         </div>
 

@@ -11,115 +11,97 @@ homePage.addEventListener("click",
         window.location = "homePage.html";
     }
 );
+const sortPosts = document.getElementById("sortPosts");
+const diwaBody = document.getElementById("diwaBody");
 
-/*
-function getAllPosts() {
-    const xhr = new XMLHttpRequest();
-    xhr.open("GET", "http://localhost:8080/blog-post/get-all-posts");
-    xhr.send();
-    xhr.responseType = "json";
-    xhr.onload = () => {
-        if (xhr.readyState == 4 && xhr.status == 200) {
-            for(let i = 0; i < xhr.response.length; i++){
-                document.getElementById("blogPosts").innerHTML += '<div class="blogPostDiv"> <h3 class="postTitle">' + xhr.response[i].title + '</h3><br>' +
-                                                                   '<p class="textContent">' + xhr.response[i].textContent + '</p><br>' +
-                                                                   '<p class="dateContent">' + 'Date: ' + xhr.response[i].date + '</div>';
-            }
-        }
-        else {
-          console.log(`Error: ${xhr.status}`);
-          document.getElementById("blogPosts").innerHTML = "Error something went wrong!"
-        }
-    };
+diwaBody.onload = applySort;
+sortPosts.addEventListener("click", applySort);
+
+function applySort(event) {
+    event.preventDefault();
+    const sortBy = document.getElementById('sortSelect').value;
+    if(sortBy == "username"){
+        // Calls getAllPostSortedByUserId to sort post by users
+        getAllPostSortedByUserId(event);
+    }
+    else{
+        // Calls getAllPosts with the selected sorting option
+        getAllPosts(event); 
+    }
 }
-*/
-
-
-// VERSION UTAN SORT FUNGERING
-
-function applySort() {
-    const sortOption = document.getElementById('sortSelect').value; // Captures the selected sorting option
-    getAllPosts(sortOption); // Calls getAllPosts with the selected sorting option
-}
-
-/*
-function getAllPosts() {
+function getAllPostSortedByUserId(event){
+    event.preventDefault();
     const xhr = new XMLHttpRequest();
-    xhr.open("GET", "http://localhost:8080/blog-post/get-all-posts");
-    xhr.send();
+    // Send a GET-request to get all posts sorted by users.
+    xhr.open("GET", "http://localhost:8080/blog-post/get-all-posts-userId", true);
     xhr.responseType = "json";
-    xhr.onload = () => {
-        if (xhr.readyState == 4 && xhr.status == 200) {
-            document.getElementById("blogPosts").innerHTML = ''; // Clear existing posts
-            for(let i = 0; i < xhr.response.length; i++){
-                document.getElementById("blogPosts").innerHTML += `
-                    <div class="blogPostDiv">
-                        <h3 class="postTitle">${xhr.response[i].title}</h3>
-                        <p class="postUsername">Posted by: ${xhr.response[i].username}</p> <!-- Include the username -->
-                        <p class="textContent">${xhr.response[i].textContent}</p>
-                        <p class="dateContent">Date: ${xhr.response[i].date}</p>
-                    </div>`;
-            }
-        } else {
-            console.log(`Error: ${xhr.status}`);
-            document.getElementById("blogPosts").innerHTML = "Error something went wrong!";
-        }
-    };
-}
-*/
-
-function getAllPosts(sortBy = 'dateNewest') {
-    const xhr = new XMLHttpRequest();
-    xhr.open("GET", "http://localhost:8080/blog-post/get-all-posts");
     xhr.send();
-    xhr.responseType = "json";
     xhr.onload = () => {
         if (xhr.readyState == 4 && xhr.status == 200) {
             let posts = xhr.response;
-            
+            // Clear existing posts
+            document.getElementById("blogPosts").innerHTML = ''; 
+            for(let i = 0; i < posts.length; i++){            
+                if  ( xhr.readyState == 4 && xhr.status == 200){
+                    document.getElementById("blogPosts").innerHTML += '<div class="blogPostDiv"> <h3 class="postTitle">' + posts[i].title + '</h3><br>' +
+                    '<p class="textContent">' + posts[i].textContent + '</p><br>' +
+                    '<p class="postUsername">' + 'Posted by: ' + posts[i].user.userName + '</p>' +
+                    '<p class="dateContent">' + 'Date: ' + posts[i].date + '</div>';
+                }
+                else {
+                    console.log(`Error: ${xhr.status}`);
+                    document.getElementById("blogPosts").innerHTML = "Error something went wrong!";
+                }
+            }
+                
+        }
+    };
+}
+
+function getAllPosts(event) {
+    const sortBy = document.getElementById('sortSelect').value;
+    if(sortBy == ""){
+        sortBy = 'dateNewest';
+    }
+    event.preventDefault();
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET", "http://localhost:8080/blog-post/get-all-posts-userId", true);
+    xhr.responseType = "json";
+    xhr.send();
+    xhr.onload = () => {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            let posts = xhr.response;
             // Sort posts by date
             if (sortBy === 'dateNewest') {
                 posts.sort((a, b) => new Date(b.date) - new Date(a.date));
-            } else if (sortBy === 'dateOldest') {
+            } 
+            else if (sortBy === 'dateOldest') {
                 posts.sort((a, b) => new Date(a.date) - new Date(b.date));
-            } else if ( sortBy === 'username'){
-                //posts.sort((a, b) => a.userName.localeCompare(b.userName));//TEST Sortera usenames.
-               // posts.sort(function(a,b){return a.userName - b.userName});
-                // console.log(a.userName);
-
             }
-
-
-
-            document.getElementById("blogPosts").innerHTML = ''; // Clear existing posts
+            // Clear existing posts
+            document.getElementById("blogPosts").innerHTML = ''; 
             for(let i = 0; i < posts.length; i++){
-
                 const userXHR = new XMLHttpRequest();
-                userXHR.open('GET', 'http://localhost:8080/user/byId?id=' + posts[i].userId);
+                userXHR.open('GET', 'http://localhost:8080/user/byId?id=' + posts[i].userId, true);
                 userXHR.send();
                 userXHR.responseType = "json";
-                
                 userXHR.onload = () => {
-                    if  (   userXHR.readyState == 4 && userXHR.status == 200){
+                    if  ( userXHR.readyState == 4 && userXHR.status == 200){
                         let userName = userXHR.response.userName;
-
                         document.getElementById("blogPosts").innerHTML += '<div class="blogPostDiv"> <h3 class="postTitle">' + posts[i].title + '</h3><br>' +
                         '<p class="textContent">' + posts[i].textContent + '</p><br>' +
                         '<p class="postUsername">' + 'Posted by: ' + userName + '</p>' +
                         '<p class="dateContent">' + 'Date: ' + posts[i].date + '</div>';
-
-                    }else {
+                    }
+                    else {
                         console.log(`Error: ${xhr.status}`);
                         document.getElementById("blogPosts").innerHTML = "Error something went wrong!";
                     }
-
-
+                    
                 }
+                
             }
-
-        };
-
-    }
-
+            
+        }
+    };
 }
-

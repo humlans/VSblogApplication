@@ -71,7 +71,13 @@
         margin: 3%;
     }
 }
-
+#username{
+    position: sticky;
+    top: 2vh;
+}
+#sortControls{
+    text-align: right;
+}
 button:hover {
     color: #FF4A4A;
 }
@@ -107,6 +113,7 @@ button:hover {
     grid-row:2;
     text-align: center;
     padding: 5%;
+    padding-top: 10%;
 }
 
 #asideRight {

@@ -4,6 +4,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
 const userid = sessionStorage.getItem("userid");
 const logOutButton = document.getElementById("logOutButton");
+const username = document.getElementById("username");
+
 getLoggedInUsersPosts();
 
 function getLoggedInUsersPosts(){
@@ -12,7 +14,7 @@ function getLoggedInUsersPosts(){
         // If userId is send from login page use that id the get that users posts.
         const xhr = new XMLHttpRequest();
         // Send a GET-request to get all posts.
-        xhr.open("GET", "http://localhost:8080/blog-post/get-all-posts");
+        xhr.open("GET", "http://localhost:8080/blog-post/get-all-posts", true);
         xhr.send();
         xhr.responseType = "json";
         xhr.onload = () => {
@@ -36,6 +38,16 @@ function getLoggedInUsersPosts(){
                 // If GET-request failed print error code to console.
                 console.log(`Error: ${xhr.status}`);
             }
+        };
+        const xhrUser = new XMLHttpRequest();
+        xhrUser.open("GET", "http://localhost:8080/user/byId?id=" + userid, true);
+        xhrUser.send();
+        xhrUser.responseType = "json";
+        xhrUser.onload = () => {
+            if (xhrUser.readyState == 4 && xhrUser.status == 200) {
+                username.innerHTML = "<p style='margin-bottom: 2%; text-align: right; text-shadow: #FF4A4A 1px 0 10px; font-weight: bold;'>" + xhrUser.response.userName + "</p>";
+            }
+
         };
     }
     else{
