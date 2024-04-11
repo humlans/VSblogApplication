@@ -2,11 +2,11 @@
 <html xmlns:th="https://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="styles/normalize.css"/>
     <link rel="stylesheet" type="text/css" href="styles/baseStyle.css"/>
     <link rel="stylesheet" type="text/css" href="styles/createPostPage.css"/>
-    <link rel="stylesheet" type="text/css" href="styles/normalize.css"/>
     <link rel="icon" type="image/png" href="images/diwa.png">
-    <title>Edit</title>
+    <title>Create</title>
 </head>
 <body>
     <div class="container">
@@ -30,10 +30,10 @@
 
             <div class="formDiv">
                 <form class="createPost">
-                    <label for="title">Title:</label><br>
+                    <label for="title" style="font-size: 18px;">Title:</label><br>
                     <input id="title" name="title" type="text" required/><br><br>
-                    <label>Text content:</label><br>
-                    <textarea id="textContent" name="textContent" type="text" required></textarea><br><br>
+                    <label for="textContent" style="font-size: 18px;">Text content:</label><br>
+                    <textarea id="textContent" name="textContent" type="text" required oninput="auto_grow(this)"></textarea><br><br>
                     <button id="createButton">Submit</button>
                     <button id="goBackButton">Go back</button>
                 </form><br>

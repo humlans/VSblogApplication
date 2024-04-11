@@ -2,9 +2,9 @@
 <html xmlns:th="https://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="styles/normalize.css"/>
     <link rel="stylesheet" type="text/css" href="styles/baseStyle.css"/>
     <link rel="stylesheet" type="text/css" href="styles/createPostPage.css"/>
-    <link rel="stylesheet" type="text/css" href="styles/normalize.css"/>
     <link rel="icon" type="image/png" href="images/diwa.png">
     <title>Edit</title>
 
@@ -35,7 +35,7 @@
                     <label for="title">Title:</label><br>
                     <input id="title" name="title" type="text" required/><br><br>
                     <label>Text content:</label><br>
-                    <textarea id="textContent" name="textContent" type="text" required></textarea><br><br>
+                    <textarea id="textContent" name="textContent" type="text" required style="overflow-y: scroll;"></textarea><br><br>
                     <button id="updateButton">Update post</button>
                     <button id="goBackButton">Go back</button>
                 </form><br>

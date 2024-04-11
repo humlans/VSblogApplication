@@ -27,9 +27,7 @@ function getLoggedInUsersPosts(){
                         // Layout of the blogPost-div to the main of the homePageAdmin.html-page.
                         document.getElementById("blogPosts").innerHTML += "<div class='blogPostDiv'><h3 class='postTitle' id='title'>" + xhr.response[i].title + "</h3><br>" +
                                                                         "<p class='textContent'>" + xhr.response[i].textContent + "</p><br>" +
-                                                                        "<p class='dateContent'>" + "Date: " + xhr.response[i].date +
-                                                                        ", ID: " + xhr.response[i].id +
-                                                                        ", userId: " + xhr.response[i].userId + "</p>"+
+                                                                        "<p class='dateContent'>" + "Date: " + xhr.response[i].date + "</p>"+
                                                                         "<div class='buttonsDiv'><button style='margin-left:5px;' onclick='goToEditPost("+ xhr.response[i].id + ")'>Edit</button>"+
                                                                         "<button style='margin-left:5px;' onclick='deletePost("+ xhr.response[i].id + ")'>Delete</button></div></div><br><br>";
                 }
@@ -45,7 +43,7 @@ function getLoggedInUsersPosts(){
         xhrUser.responseType = "json";
         xhrUser.onload = () => {
             if (xhrUser.readyState == 4 && xhrUser.status == 200) {
-                username.innerHTML = "<p style='margin-bottom: 2%; text-align: right; text-shadow: #FF4A4A 1px 0 10px; font-weight: bold;'>" + xhrUser.response.userName + "</p>";
+                username.innerHTML = "<p id='userNameField'>" + xhrUser.response.userName + "</p>";
             }
 
         };
