@@ -2,9 +2,10 @@
 <html xmlns:th="https://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="styles/baseStyle.css"/>
-    <link rel="stylesheet" type="text/css" href="styles/homeStyle.css"/>
     <link rel="stylesheet" type="text/css" href="styles/normalize.css"/>
+    <link rel="stylesheet" type="text/css" href="styles/baseStyle.css"/>
+    <link rel="stylesheet" type="text/css" href="styles/blogPostsStyle.css"/>
+    <link rel="stylesheet" type="text/css" href="styles/homeStyle.css"/>
     <link rel="icon" type="image/png" href="images/diwa.png">
     <title>Home</title>
 
@@ -29,9 +30,9 @@
         <div id="main">
             <div id="sortControls">
                 <select id="sortSelect">
-                    <option value="username">Username</option>
+                    <option class="options" value="username">Username</option>
                     <option value="dateNewest">Newest</option>
-                    <option value="dateOldest">Oldest</option>
+                    <option class="options" value="dateOldest">Oldest</option>
                 </select>
                 <button id="sortPosts">Apply Sort</button>
             </div>

@@ -1,0 +1,27 @@
+.textContent {
+    text-align: left;
+    margin-left: 2%;
+    margin-right: 2%;
+    padding: 5px;
+}
+
+.dateContent {
+    float: right;
+    font-size: small;
+    margin-top: 2%;
+}
+
+.postTitle {
+    margin-top: 2%;
+    text-decoration: underline;
+    margin-left: 2%;
+    padding: 5px;
+    font-size: 20px;
+}
+
+.postUsername {
+    margin-bottom: 1%;
+    font-style: italic;
+}
+
+

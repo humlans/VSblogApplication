@@ -1,15 +1,21 @@
-.textContent {
-    text-align: left;
-    margin-left: 2%;
+#sortControls{
+    text-align: right;
 }
 
 .dateContent {
     float: right;
     font-size: small;
-    margin: 5px;
+    margin-top: 1%;
 }
 
-.postTitle {
-    text-decoration: underline;
+#sortSelect {
+    background-color: #FFF5E0;
+    padding: 5px;
+    border: 2px solid #14224E;
+    border-radius: 8%;
+    box-shadow: 1px 0 5px #14224E;
 }
 
+#sortSelect .options {
+    background-color: #FFE0C5;
+}
