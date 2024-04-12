@@ -18,7 +18,7 @@ function createBlogPost(event){
   event.preventDefault();
   const titleForm = document.getElementById("title");
   const textContentForm = document.getElementById("textContent");
-  const dateForm = new Date().toDateString();
+  const dateForm = new Date().toISOString().split('T')[0];
   const userIdForm = sessionStorage.getItem("userid");
   // Creates a new XMLHttpRequest for server communication.
   const xhr = new XMLHttpRequest();
