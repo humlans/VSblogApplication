@@ -1,9 +1,13 @@
+
+// Event listener to the document that executes once the HTML content is fully loaded.
 document.addEventListener("DOMContentLoaded", function() {
     footerMotto.updateMotto('editPage');
   });
 
 
 const goBackButton = document.getElementById("goBackButton");
+
+// Event listener to the 'goBackButton' that prevents the default form submission and redirects the user to the admin home page when clicked.
 goBackButton.addEventListener("click",
     function(event) {
         event.preventDefault();
@@ -11,21 +15,29 @@ goBackButton.addEventListener("click",
     }
 );
 
+// Function to retrieve a blog post's data from the server using it's ID.
 function getBlogPost(){
     const id = sessionStorage.getItem("id");
     const title = document.getElementById("title");
     const textContent = document.getElementById("textContent");
     
+    
     const xhr = new XMLHttpRequest();
     xhr.open("GET", "http://localhost:8080/blog-post?id=" + id);
     xhr.send();
     xhr.responseType = "json";
+    // Sets up what to do when the response is loaded.
     xhr.onload = () => {
+        // Checks if the request was successful.
         if (xhr.readyState == 4 && xhr.status == 200) {
+             // Updates the title input field with the title from the response.
             title.value = xhr.response.title;
+            // Converts HTML line breaks in the content to newline characters for the textarea.
             textContent.value = xhr.response.textContent.replace(/<br\s*\/?>/gi, "\n");
+            // Stores the date of the post in session storage.
             sessionStorage.setItem("date", xhr.response.date);
         }
+        // Logs any errors and displays an error message on the webpage.
         else {
           console.log(`Error: ${xhr.status}`);
           document.getElementById("blogPosts").innerHTML = "Error something went wrong!"
@@ -36,7 +48,9 @@ function getBlogPost(){
 const updateButton = document.getElementById("updateButton");
 updateButton.addEventListener("click", updateBlogPost);
 
+// Function to update a blog post using the data entered in the form.
 function updateBlogPost(event){
+    // Prevents the default action of the event.
     event.preventDefault();
     const id = sessionStorage.getItem("id");
     const titleForm = document.getElementById("title");

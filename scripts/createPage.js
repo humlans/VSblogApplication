@@ -13,17 +13,22 @@ goBackButton.addEventListener("click",
 const createPostButton = document.getElementById("createButton");
 createPostButton.addEventListener("click", createBlogPost);
 
+// Function to create a new blog post.
 function createBlogPost(event){
   event.preventDefault();
   const titleForm = document.getElementById("title");
   const textContentForm = document.getElementById("textContent");
   const dateForm = new Date().toDateString();
   const userIdForm = sessionStorage.getItem("userid");
+  // Creates a new XMLHttpRequest for server communication.
   const xhr = new XMLHttpRequest();
+  // Converts newline characters in the text content to HTML line breaks.
   let textContentToSend = textContentForm.value.replace(/(?:\r\n|\r|\n)/g, "<br>");
+  // Configures the request to POST the new blog data, including the user inputs and current date.
   xhr.open("POST", "http://localhost:8080/blog-post/create-post?title=" + titleForm.value + "&textContent=" + textContentToSend + "&date=" + dateForm + "&userId=" + userIdForm, true);
   xhr.send();
   xhr.responseType = "json";
+  // Defines what happens once the server responds.
   xhr.onload = () => {
       if (xhr.readyState == 4 && xhr.status == 201) {
         if (window.confirm("Created blog post. Would you like to see your posts?")) {
