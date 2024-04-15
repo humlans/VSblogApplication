@@ -42,7 +42,7 @@ function createBlogPost(event){
         }
       }
       else {
-        console.log('Error: ${xhr.status}');
+        console.log("Error:" + xhr.status);
         alert("Error something went wrong!");
       }
   };

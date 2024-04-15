@@ -39,7 +39,7 @@ function getBlogPost(){
         }
         // Logs any errors and displays an error message on the webpage.
         else {
-          console.log(`Error: ${xhr.status}`);
+          console.log("Error:" + xhr.status);
           document.getElementById("blogPosts").innerHTML = "Error something went wrong!"
         }
     };

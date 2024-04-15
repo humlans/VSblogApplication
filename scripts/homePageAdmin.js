@@ -34,7 +34,7 @@ function getLoggedInUsersPosts(){
             }
             } else {
                 // If GET-request failed print error code to console.
-                console.log(`Error: ${xhr.status}`);
+                console.log("Error:" + xhr.status);
             }
         };
         const xhrUser = new XMLHttpRequest();
