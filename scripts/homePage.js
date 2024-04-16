@@ -6,9 +6,10 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 // Retrieves HTML elements by their ID to attach event listeners.
-const edit = document.getElementById("edit");
 const homePage = document.getElementById("homePage");
-const create = document.getElementById("create");
+const sortPosts = document.getElementById("sortPosts");
+const diwaBody = document.getElementById("diwaBody");
+const nextPageDiv = document.getElementById("nextPageDiv");
 
 // Event listener that navigates to 'homePage.html' when clicked.
 homePage.addEventListener("click",
@@ -16,10 +17,6 @@ homePage.addEventListener("click",
         window.location = "homePage.html";
     }
 );
-
-// Element retrievals for sorting functionality and the main content body.
-const sortPosts = document.getElementById("sortPosts");
-const diwaBody = document.getElementById("diwaBody");
 
 // Assigns the 'applySort' function to run when the 'diwaBody' element is loaded.
 diwaBody.onload = applySort;
@@ -63,7 +60,7 @@ function createButtonsForLoadNextPosts () {
 }
 
 // Function to move between pages of posts with buttons.
-const nextPageDiv = document.getElementById("nextPageDiv");
+
 nextPageDiv.addEventListener("click", function(event) {
     let target = event.target; 
     clickLoadPageFunction(target.value);    

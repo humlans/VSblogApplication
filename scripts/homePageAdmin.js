@@ -2,9 +2,11 @@ document.addEventListener("DOMContentLoaded", function() {
     footerMotto.updateMotto('homePageAdmin');
 });
 
+// Retrieves HTML elements by their ID to attach event listeners.
 const userid = sessionStorage.getItem("userid");
 const logOutButton = document.getElementById("logOutButton");
 const username = document.getElementById("username");
+const goToCreatePageButton = document.getElementById("goToCreatePage");
 
 getLoggedInUsersPosts();
 
@@ -23,7 +25,7 @@ function getLoggedInUsersPosts(){
                 document.getElementById("blogPosts").innerHTML = "";
                 for(let i = 0; i < xhr.response.length; i++){
                     // Fill in blogPost-div with blogPost that the logged in user have made.
-                    if(xhr.response[i].userId == userid){
+                    if(xhr.response[i].user.id == userid){
                         // Layout of the blogPost-div to the main of the homePageAdmin.html-page.
                         document.getElementById("blogPosts").innerHTML += "<div class='blogPostDiv'><h3 class='postTitle' id='title'>" + xhr.response[i].title + "</h3><br>" +
                                                                         "<p class='textContent'>" + xhr.response[i].textContent + "</p><br>" +
@@ -52,6 +54,7 @@ function getLoggedInUsersPosts(){
         logOutButton.style.display = "none";
     }
 }
+
 function goToEditPost(postId) {
     // Save  blogPost id in sessionStorage to use at editPage.
     sessionStorage.setItem("id", postId);
@@ -61,7 +64,7 @@ function goToEditPost(postId) {
     window.location = "editPage.html";
 }
 
-const goToCreatePageButton = document.getElementById("goToCreatePage");
+
 goToCreatePageButton.addEventListener("click", goToCreatePage); 
 function goToCreatePage() {
     sessionStorage.setItem("userid", userid);
@@ -87,7 +90,6 @@ function deletePost(postId){
         xhr.send();
     }
 }
-
 
 logOutButton.addEventListener("click", logOut);
 function logOut(event) {
